@@ -51,9 +51,13 @@ class ProductosViewController: UIViewController, UITableViewDelegate, UITableVie
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         
-        let cell = tableView.dequeueReusableCellWithIdentifier("ProductosCell", forIndexPath: indexPath)
+        let cell = tableView.dequeueReusableCellWithIdentifier("ProductosCell", forIndexPath: indexPath) as! ProductosTableViewCell
         
-        cell.textLabel?.text = "test"
+        cell.nombreLabel.text = "Nombre: dia 1"
+        
+        cell.cantidadLabel.text = "#: 1"
+        
+        cell.descripcionLabel.text = "Descripcion: primera preba del catalogo de productos"
         
         return cell
         
