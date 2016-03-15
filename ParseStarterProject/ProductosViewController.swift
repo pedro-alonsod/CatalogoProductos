@@ -7,16 +7,30 @@
 //
 
 import UIKit
+import Parse
 
 class ProductosViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
     let detallesSegue = "DetallesSegue"
-    
+    var arrayProductos: [PFObject] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+        
+        let queryProductos = PFQuery(className: "Producto")
+        
+        do {
+        
+            arrayProductos = try queryProductos.findObjects()
+        } catch let error {
+            
+            print(error)
+        }
+        
+        print("this should print first \(arrayProductos.count)")
+        print(arrayProductos[0].valueForKey("nombre")!)
     }
 
     override func didReceiveMemoryWarning() {
@@ -32,7 +46,8 @@ class ProductosViewController: UIViewController, UITableViewDelegate, UITableVie
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
-        return 5
+        print("this second")
+        return arrayProductos.count
     }
     
     func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
@@ -51,13 +66,41 @@ class ProductosViewController: UIViewController, UITableViewDelegate, UITableVie
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         
+        
+        let nombre = "nombre", foto = "Foto", descripcion = "descripcion", precio = "precio", cantidad =  "cantidad", pedir = "pedir"
+        
+        
         let cell = tableView.dequeueReusableCellWithIdentifier("ProductosCell", forIndexPath: indexPath) as! ProductosTableViewCell
         
-        cell.nombreLabel.text = "Nombre: dia 1"
         
-        cell.cantidadLabel.text = "#: 1"
+        if let pImg = arrayProductos[indexPath.row].valueForKey(foto) as? PFFile {
+
+
+            do {
+                
+                pImg.getDataInBackgroundWithBlock {
+                    
+                    (data: NSData?, error: NSError?) -> Void in
+                 
+                    if error == nil {
+                        
+                        cell.productoImg.image = UIImage(data: data!)
+                    }
+                    
+                }
+            }
+
+        }
         
-        cell.descripcionLabel.text = "Descripcion: primera preba del catalogo de productos"
+        
+        
+        cell.nombreLabel.text = "Nombre: \(arrayProductos[indexPath.row].valueForKey(nombre)!) "
+        
+        cell.cantidadLabel.text = "#: \(arrayProductos[indexPath.row].valueForKey(cantidad)!)"
+        
+        cell.descripcionLabel.text = "Descripcion: \(arrayProductos[indexPath.row].valueForKey(descripcion)!)"
+        
+        //cell.productoImg.image =
         
         return cell
         

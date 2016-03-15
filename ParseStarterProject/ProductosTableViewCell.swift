@@ -11,6 +11,7 @@ import UIKit
 class ProductosTableViewCell: UITableViewCell {
     
     
+    @IBOutlet weak var productoImg: UIImageView!
     @IBOutlet weak var productoImageView: UIView!
     @IBOutlet weak var nombreLabel: UILabel!
     @IBOutlet weak var descripcionLabel: UILabel!

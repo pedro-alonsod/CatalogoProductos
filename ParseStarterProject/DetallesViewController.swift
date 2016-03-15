@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Parse
 
 class DetallesViewController: UIViewController, UINavigationControllerDelegate, UIImagePickerControllerDelegate {
 
@@ -76,6 +77,49 @@ class DetallesViewController: UIViewController, UINavigationControllerDelegate, 
         productoImageView.image = info[UIImagePickerControllerOriginalImage] as? UIImage
     
         
+    }
+    
+    
+    @IBAction func saveTapped(sender: UIButton) {
+        
+        if ProductoDescripcionText.text != "" && ProductoPrecioText.text != "" &&  ProductoCantidadText.text != "" && productoImageView.image != nil {
+            
+            let pNombre = nombreProductoText.text
+            let pPrecio = ProductoPrecioText.text
+            let pCantidad = ProductoCantidadText.text
+            let pDescripcion = ProductoDescripcionText.text
+            
+            
+            let pickedImage:UIImage = productoImageView.image!
+            //let scaledImage = scaleImageWith(pickedImage)
+            let imageData = UIImageJPEGRepresentation(pickedImage, 0.5)
+            let imageFile:PFFile = PFFile(data: imageData!)!
+            
+            
+            var objectToParse = PFObject(className: "Producto")
+            
+            objectToParse["nombre"] = pNombre
+            objectToParse["cantidad"] = pCantidad
+            objectToParse["precio"] = pPrecio
+            objectToParse["descripcion"] = pDescripcion
+            objectToParse["pedir"] = false
+            //objectToParse["Foto"] = PFFile(data: imageData!)
+            objectToParse.setObject(imageFile, forKey: "Foto")
+            
+            objectToParse.saveInBackgroundWithBlock {
+                
+                (success: Bool, error: NSError?) -> Void in
+                
+                if success {
+                    
+                    print("saed success")
+                    
+                } else {
+                    
+                    print(error?.description)
+                }
+            }
+        }
     }
     
     override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
