@@ -113,7 +113,7 @@ class DetallesViewController: UIViewController, UINavigationControllerDelegate, 
                 if success {
                     
                     print("saed success")
-                    
+                    self.dismissViewControllerAnimated(true, completion: nil)
                 } else {
                     
                     print(error?.description)
@@ -127,6 +127,6 @@ class DetallesViewController: UIViewController, UINavigationControllerDelegate, 
         nombreProductoText.resignFirstResponder()
         ProductoPrecioText.resignFirstResponder()
         ProductoDescripcionText.resignFirstResponder()
-        ProductoDescripcionText.resignFirstResponder()
+        ProductoCantidadText.resignFirstResponder()
     }
 }
