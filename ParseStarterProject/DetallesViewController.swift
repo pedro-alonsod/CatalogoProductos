@@ -21,6 +21,7 @@ class DetallesViewController: UIViewController, UINavigationControllerDelegate, 
     var productoDescripcion: String!
     var productoCantided: String!
     var productoPrecio: String!
+    var productoObjectId: String?
     
     @IBOutlet weak var ProductoDescripcionText: UITextView!
     
@@ -37,6 +38,7 @@ class DetallesViewController: UIViewController, UINavigationControllerDelegate, 
         nombreProductoText.text = productoNombre
         ProductoDescripcionText.text = "Descripcion: \(productoDescripcion)"
         ProductoPrecioText.text = productoPrecio
+        print(productoObjectId)
         
     }
 
@@ -94,7 +96,7 @@ class DetallesViewController: UIViewController, UINavigationControllerDelegate, 
     
     @IBAction func saveTapped(sender: UIButton) {
         
-        if ProductoDescripcionText.text != "" && ProductoPrecioText.text != "" &&  ProductoCantidadText.text != "" && productoImageView.image != nil {
+        if ProductoDescripcionText.text != "" && ProductoPrecioText.text != "" &&  ProductoCantidadText.text != "" && productoImageView.image != nil && productoObjectId == nil {
             
             let pNombre = nombreProductoText.text
             let pPrecio = ProductoPrecioText.text
@@ -131,6 +133,56 @@ class DetallesViewController: UIViewController, UINavigationControllerDelegate, 
                     print(error?.description)
                 }
             }
+        } else if productoObjectId != nil {
+            
+            let pNombre = nombreProductoText.text
+            let pPrecio = ProductoPrecioText.text
+            let pCantidad = ProductoCantidadText.text
+            let pDescripcion = ProductoDescripcionText.text
+            
+            
+            let pickedImage:UIImage = productoImageView.image!
+            //let scaledImage = scaleImageWith(pickedImage)
+            let imageData = UIImageJPEGRepresentation(pickedImage, 0.5)
+            let imageFile:PFFile = PFFile(data: imageData!)!
+            
+
+            let updateQuery = PFQuery(className: "Producto")
+            
+            updateQuery.getObjectInBackgroundWithId(productoObjectId!) {
+                
+                (object: PFObject?, error: NSError?) -> Void in
+                
+                if error == nil {
+                    
+                    object!["nombre"] = pNombre
+                    object!["cantidad"] = pCantidad
+                    object!["precio"] = pPrecio
+                    object!["descripcion"] = pDescripcion
+                    object!["pedir"] = false
+                    //objectToParse["Foto"] = PFFile(data: imageData!)
+                    //object!.setObject(imageFile, forKey: "Foto")
+                    
+                    object!.saveInBackgroundWithBlock {
+                        
+                        (success: Bool?, error: NSError?) -> Void in
+                        
+                        if error == nil {
+                            
+                            print("updated inside")
+                            
+                        } else {
+                            
+                            print(error?.description)
+                        }
+                    }
+                    
+                } else {
+                    
+                    
+                }
+            }
+            
         }
     }
     

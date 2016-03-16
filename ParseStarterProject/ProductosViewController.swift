@@ -132,10 +132,12 @@ class ProductosViewController: UIViewController, UITableViewDelegate, UITableVie
             let amount = arrayProductos[row].valueForKey(cantidad)!
             let name = arrayProductos[row].valueForKey(nombre)!
             let price = arrayProductos[row].valueForKey(precio)!
+            let objectId = arrayProductos[row].objectId!
             
             print(detailText)
             print(amount)
             print(name)
+            print(objectId)
             
             DVC.productoDescripcion = detailText as! String
                 
@@ -144,6 +146,8 @@ class ProductosViewController: UIViewController, UITableViewDelegate, UITableVie
             DVC.productoNombre = name as! String
             
             DVC.productoPrecio = price as! String
+            
+            DVC.productoObjectId = objectId
             
             
             
