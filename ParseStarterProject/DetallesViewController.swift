@@ -170,6 +170,8 @@ class DetallesViewController: UIViewController, UINavigationControllerDelegate, 
                         if error == nil {
                             
                             print("updated inside")
+                            self.dismissViewControllerAnimated(true, completion: nil)
+                            
                             
                         } else {
                             
