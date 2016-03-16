@@ -35,6 +35,19 @@ class ProductosViewController: UIViewController, UITableViewDelegate, UITableVie
         print("this should print first \(arrayProductos.count)")
         print(arrayProductos[0].valueForKey("nombre")!)
     }
+    
+    override func viewWillAppear(animated: Bool) {
+        
+        print("test 2")
+        
+        self.tableView.reloadData()
+    }
+    
+    override func viewDidAppear(animated: Bool) {
+        
+        print("test 3")
+        self.tableView.reloadData()
+    }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
