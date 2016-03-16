@@ -17,6 +17,11 @@ class DetallesViewController: UIViewController, UINavigationControllerDelegate, 
     @IBOutlet weak var ProductoPrecioText: UITextField!
     @IBOutlet weak var ProductoCantidadText: UITextField!
     
+    var productoNombre: String!
+    var productoDescripcion: String!
+    var productoCantided: String!
+    var productoPrecio: String!
+    
     @IBOutlet weak var ProductoDescripcionText: UITextView!
     
     var imagePicker: UIImagePickerController!
@@ -26,6 +31,13 @@ class DetallesViewController: UIViewController, UINavigationControllerDelegate, 
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+        
+        nombreProductoText.text = productoNombre
+        ProductoCantidadText.text = productoCantided
+        nombreProductoText.text = productoNombre
+        ProductoDescripcionText.text = "Descripcion: \(productoDescripcion)"
+        ProductoPrecioText.text = productoPrecio
+        
     }
 
     override func didReceiveMemoryWarning() {
@@ -112,7 +124,7 @@ class DetallesViewController: UIViewController, UINavigationControllerDelegate, 
                 
                 if success {
                     
-                    print("saed success")
+                    print("saved success")
                     self.dismissViewControllerAnimated(true, completion: nil)
                 } else {
                     

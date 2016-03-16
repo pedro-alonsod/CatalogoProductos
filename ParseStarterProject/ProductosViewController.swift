@@ -12,6 +12,9 @@ import Parse
 class ProductosViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
     let detallesSegue = "DetallesSegue"
+    let cellDetailsSegue = "CellDetailSegue"
+    
+    @IBOutlet weak var tableView: UITableView!
     var arrayProductos: [PFObject] = []
     
     override func viewDidLoad() {
@@ -105,15 +108,48 @@ class ProductosViewController: UIViewController, UITableViewDelegate, UITableVie
         return cell
         
     }
-    /*
+    
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         // Get the new view controller using segue.destinationViewController.
         // Pass the selected object to the new view controller.
+        
+        let nombre = "nombre", foto = "Foto", descripcion = "descripcion", precio = "precio", cantidad =  "cantidad", pedir = "pedir"
+        
+        if segue.identifier == cellDetailsSegue {
+            
+            let DVC = segue.destinationViewController as! DetallesViewController
+            
+            
+            let myIndexPath = self.tableView.indexPathForSelectedRow!
+            let row = myIndexPath.row
+            
+            print("\(row) \(arrayProductos[row].valueForKey(descripcion))")
+            
+            let detailText = arrayProductos[row].valueForKey(descripcion)!
+            let amount = arrayProductos[row].valueForKey(cantidad)!
+            let name = arrayProductos[row].valueForKey(nombre)!
+            let price = arrayProductos[row].valueForKey(precio)!
+            
+            print(detailText)
+            print(amount)
+            print(name)
+            
+            DVC.productoDescripcion = detailText as! String
+                
+            DVC.productoCantided = amount as! String
+                
+            DVC.productoNombre = name as! String
+            
+            DVC.productoPrecio = price as! String
+            
+            
+            
+        }
     }
-    */
+    
 
     @IBAction func salirTapped(sender: UIButton) {
         
