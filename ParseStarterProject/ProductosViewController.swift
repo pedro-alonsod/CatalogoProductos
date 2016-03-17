@@ -152,24 +152,26 @@ class ProductosViewController: UIViewController, UITableViewDelegate, UITableVie
             
         } else if editingStyle == .Insert {
     // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
+            
+            //tableView.insertRowsAtIndexPaths([indexPath], withRowAnimation: .Right)
         }
     }
 
     
-    /*
+    
     // Override to support rearranging the table view.
-    override func tableView(tableView: UITableView, moveRowAtIndexPath fromIndexPath: NSIndexPath, toIndexPath: NSIndexPath) {
+     func tableView(tableView: UITableView, moveRowAtIndexPath fromIndexPath: NSIndexPath, toIndexPath: NSIndexPath) {
     
     }
-    */
     
-    /*
+    
+    
     // Override to support conditional rearranging of the table view.
-    override func tableView(tableView: UITableView, canMoveRowAtIndexPath indexPath: NSIndexPath) -> Bool {
+    func tableView(tableView: UITableView, canMoveRowAtIndexPath indexPath: NSIndexPath) -> Bool {
     // Return false if you do not want the item to be re-orderable.
     return true
     }
-    */
+    
     
     // MARK: - Navigation
 
