@@ -48,6 +48,13 @@ class ProductosViewController: UIViewController, UITableViewDelegate, UITableVie
         print("test 3")
         self.tableView.reloadData()
     }
+    
+    override func viewDidLayoutSubviews() {
+        
+        
+        print("test 4 see which one is celled when i need it")
+        tableView.reloadData()
+    }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -146,7 +153,10 @@ class ProductosViewController: UIViewController, UITableViewDelegate, UITableVie
             let name = arrayProductos[row].valueForKey(nombre)!
             let price = arrayProductos[row].valueForKey(precio)!
             let objectId = arrayProductos[row].objectId!
+            let picture = arrayProductos[row].valueForKey(foto) as! PFFile
             
+            
+            print(picture.description)
             print(detailText)
             print(amount)
             print(name)
@@ -161,6 +171,11 @@ class ProductosViewController: UIViewController, UITableViewDelegate, UITableVie
             DVC.productoPrecio = price as! String
             
             DVC.productoObjectId = objectId
+            
+            DVC.productoImage = picture
+            
+            print(picture.description)
+            
             
             
             

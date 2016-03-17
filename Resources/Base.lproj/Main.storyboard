@@ -406,7 +406,7 @@
                                     <constraint firstAttribute="height" constant="30" id="aw9-rp-7o3"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
+                                <textInputTraits key="textInputTraits" keyboardType="namePhonePad"/>
                                 <variation key="default">
                                     <mask key="constraints">
                                         <exclude reference="aw9-rp-7o3"/>
@@ -424,7 +424,7 @@
                                     <constraint firstAttribute="height" constant="30" id="XwI-ru-lRz"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
+                                <textInputTraits key="textInputTraits" keyboardType="decimalPad"/>
                                 <variation key="default">
                                     <mask key="constraints">
                                         <exclude reference="XwI-ru-lRz"/>
@@ -442,7 +442,7 @@
                                     <constraint firstAttribute="height" constant="30" id="9F9-bn-ReT"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
+                                <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
                                 <variation key="default">
                                     <mask key="constraints">
                                         <exclude reference="9F9-bn-ReT"/>
@@ -461,7 +461,7 @@
                                     <constraint firstAttribute="height" constant="116" id="WrA-Ik-RTC"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences" keyboardType="alphabet"/>
                                 <variation key="default">
                                     <mask key="constraints">
                                         <exclude reference="WrA-Ik-RTC"/>

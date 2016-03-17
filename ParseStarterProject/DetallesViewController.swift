@@ -22,6 +22,7 @@ class DetallesViewController: UIViewController, UINavigationControllerDelegate, 
     var productoCantided: String!
     var productoPrecio: String!
     var productoObjectId: String?
+    var productoImage: PFFile?
     
     @IBOutlet weak var ProductoDescripcionText: UITextView!
     
@@ -38,7 +39,33 @@ class DetallesViewController: UIViewController, UINavigationControllerDelegate, 
         nombreProductoText.text = productoNombre
         ProductoDescripcionText.text = "Descripcion: \(productoDescripcion)"
         ProductoPrecioText.text = productoPrecio
+       
+        if productoImage != nil {
+        
+            //productoImageView.image = UIImage(data: productoImage!)
+            
+            
+        }
         print(productoObjectId)
+        
+        if let pictureTVC = productoImage {
+            
+            pictureTVC.getDataInBackgroundWithBlock {
+                
+                (imageData: NSData?, error: NSError?) -> Void in
+                
+                if error == nil {
+                    
+                    //print("got it good \(imageData?.description)")
+                    self.productoImageView.image = UIImage(data: imageData!)
+                    
+                    
+                } else {
+                    
+                    print(error?.localizedDescription)
+                }
+            }
+        }
         
     }
 
@@ -139,6 +166,8 @@ class DetallesViewController: UIViewController, UINavigationControllerDelegate, 
             let pPrecio = ProductoPrecioText.text
             let pCantidad = ProductoCantidadText.text
             let pDescripcion = ProductoDescripcionText.text
+            var productoPicutureTBV: NSData!
+            
             
             
             let pickedImage:UIImage = productoImageView.image!
@@ -160,8 +189,8 @@ class DetallesViewController: UIViewController, UINavigationControllerDelegate, 
                     object!["precio"] = pPrecio
                     object!["descripcion"] = pDescripcion
                     object!["pedir"] = false
-                    //objectToParse["Foto"] = PFFile(data: imageData!)
-                    //object!.setObject(imageFile, forKey: "Foto")
+                    object!["Foto"] = PFFile(data: imageData!)
+                    object!.setObject(imageFile, forKey: "Foto")
                     
                     object!.saveInBackgroundWithBlock {
                         
