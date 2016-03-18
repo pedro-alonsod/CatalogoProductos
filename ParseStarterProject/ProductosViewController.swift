@@ -139,10 +139,12 @@ class ProductosViewController: UIViewController, UITableViewDelegate, UITableVie
     */
     
     
+    
     // Override to support editing the table view.
     func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
         if editingStyle == .Delete {
     // Delete the row from the data source
+            
             
             arrayProductos.removeAtIndex(indexPath.row)
             

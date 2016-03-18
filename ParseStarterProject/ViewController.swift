@@ -19,6 +19,8 @@ class ViewController: UIViewController {
     var user: PFUser!
     
     let productosSegue = "ProductosSegue"
+    let clientesSegue = "ClientesSegue"
+    var segueToChoose: String!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -47,13 +49,42 @@ class ViewController: UIViewController {
                     
                     print("Logged in")
                     
-                    self.performSegueWithIdentifier(self.productosSegue, sender: self)
+                    let permission = userParse!["usuario"] as! Bool
+                    
+                    print(permission)
+                    
+                    if permission {
+                    
+                        self.performSegueWithIdentifier(self.clientesSegue, sender: self)
+                        
+                    } else {
+                    
+                        self.performSegueWithIdentifier(self.productosSegue, sender: self)
+                        
+                        
+                    }
+                    
+                    
                     
                 }
             }
         }
         
     }
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+    
+        if segue.identifier == productosSegue {
+            
+            segueToChoose = productosSegue
+        } else {
+            
+            segueToChoose = clientesSegue
+        }
+        
+    }
+    
+    
     override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
         
         usernameTextField.resignFirstResponder()
