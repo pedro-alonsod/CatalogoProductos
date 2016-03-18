@@ -557,6 +557,9 @@
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BiR-0c-7hf">
                                 <rect key="frame" x="-23" y="-15" width="46" height="30"/>
                                 <state key="normal" title="Mandar mensaje"/>
+                                <connections>
+                                    <action selector="mandarMensajeTapped:" destination="Hw8-DF-ce1" eventType="touchUpInside" id="WOp-e8-gvP"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pwB-Tt-xNB">
                                 <rect key="frame" x="-23" y="-15" width="46" height="30"/>
