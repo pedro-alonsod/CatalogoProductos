@@ -269,7 +269,18 @@ class ClientesViewController: UIViewController, MFMailComposeViewControllerDeleg
             arrayProductos.sortInPlace {
                 (object1: PFObject, object2: PFObject) -> Bool in
                 
-                return (Int(object1["precio"] as! String)!) > Int(object2["precio"] as! String)!
+                let precio1String = object1["precio"] as! String
+                let precio2String = object2["precio"] as! String
+                
+                print(precio1String)
+                print(precio2String)
+                
+                let precio1 = Double(object1["precio"] as! String)!
+                let precio2 = Double(object2["precio"] as! String)!
+                
+                print("precio1 \(precio1) precio2 \(precio2)")
+                
+                return (precio1 > precio2)
                 
             }
             
@@ -290,7 +301,7 @@ class ClientesViewController: UIViewController, MFMailComposeViewControllerDeleg
                 
 
                 
-                return (Int(object1["precio"] as! String)!) < (Int(object2["precio"] as! String)!)
+                return (Double(object1["precio"] as! String)!) < (Double(object2["precio"] as! String)!)
             
             }
             

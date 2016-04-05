@@ -9,7 +9,7 @@
 import UIKit
 import Parse
 
-class MensajesViewController: UIViewController {
+class MensajesViewController: UIViewController, UITextFieldDelegate {
 
     
     @IBOutlet weak var nombreTextField: UITextField!
@@ -22,12 +22,30 @@ class MensajesViewController: UIViewController {
     
     let date: NSDate = NSDate(timeIntervalSinceNow: 0)
     
+    var mensajeEnviado: Bool = false
+    
+    @IBOutlet weak var enviarButton: UIButton!
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+    
+        print(date)
+        print(PFUser.currentUser())
+        
+        nombreTextField.text = PFUser.currentUser()?.username!
+        fechaTextFiled.text = date.description
+        
+        mensajeTextView.clearsOnInsertion = true
+        //mensajeEnviado = false
+    
+    }
+    
+    override func viewDidAppear(animated: Bool) {
+        
+        mensajeTextView.text = ""
     }
 
     override func didReceiveMemoryWarning() {
@@ -36,9 +54,53 @@ class MensajesViewController: UIViewController {
     }
     
     @IBAction func enviarTapped(sender: UIButton) {
+        
+        if mensajeEnviado == false {
+            
+        
+            let mensaje = PFObject(className: "Mensajes")
+            
+            mensaje["mensajeDescripcion"] = mensajeTextView.text
+            mensaje["usuarioDelMensaje"] = PFUser.currentUser()
+            
+            mensaje.saveInBackgroundWithBlock {
+                
+                (saved: Bool, error: NSError?) -> Void in
+                
+                if saved {
+                    
+                    self.displayError("Completo", message: "El mensaje ha sido enviado. Toca cancelar para regresar.")
+                    print("saved the menssage to parse")
+                    
+                    //self.dismissViewControllerAnimated(true, completion: nil)
+                    
+                    self.mensajeTextView.userInteractionEnabled = false
+                    
+                    self.dismissViewControllerAnimated(true, completion: nil)
+                    
+                    self.enviarButton.enabled = false
+                    
+                } else {
+                    
+                    print(error?.localizedDescription)
+                    self.displayError("Error", message: "Hubo un error al mandar el mensaje, intentalo de nuevo.")
+                }
+                
+            }
+        mensajeEnviado = true
+            
+        } else {
+           
+            enviarButton.enabled = false
+            
+        }
+        
+        
     }
 
     @IBAction func cancelarTapped(sender: UIButton) {
+        
+        
         
         self.dismissViewControllerAnimated(true, completion: nil)
     }
@@ -51,5 +113,19 @@ class MensajesViewController: UIViewController {
         // Pass the selected object to the new view controller.
     }
     */
-
+    
+    //Textfield things
+    
+    override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
+        
+        nombreTextField.resignFirstResponder()
+        fechaTextFiled.resignFirstResponder()
+        mensajeTextView.resignFirstResponder()
+    }
+  func displayError(title: String, message: String) {
+        
+        let alert: UIAlertController = UIAlertController(title: title, message: message, preferredStyle: UIAlertControllerStyle.Alert)
+        alert.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.Default, handler: nil))
+        self.presentViewController(alert, animated: true, completion: nil)
+    }
 }
