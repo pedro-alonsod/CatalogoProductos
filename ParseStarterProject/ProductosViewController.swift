@@ -13,6 +13,8 @@ class ProductosViewController: UIViewController, UITableViewDelegate, UITableVie
 
     let detallesSegue = "DetallesSegue"
     let cellDetailsSegue = "CellDetailSegue"
+    let verMensajesSegue = "VerMensajesSegue"
+    
     
     @IBOutlet weak var tableView: UITableView!
     var arrayProductos: [PFObject] = []
@@ -241,5 +243,10 @@ class ProductosViewController: UIViewController, UITableViewDelegate, UITableVie
         self.performSegueWithIdentifier(detallesSegue, sender: self)
     }
     
+    @IBAction func verMensajesTappes(sender: UIButton) {
+     
+        
+        self.performSegueWithIdentifier(verMensajesSegue, sender: self)
+    }
     
 }

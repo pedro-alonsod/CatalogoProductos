@@ -58,6 +58,8 @@ class ViewController: UIViewController {
                         self.performSegueWithIdentifier(self.clientesSegue, sender: self)
                         
                     } else {
+                        
+                        print("Moving to productos")
                     
                         self.performSegueWithIdentifier(self.productosSegue, sender: self)
                         
@@ -74,14 +76,14 @@ class ViewController: UIViewController {
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
     
-        if segue.identifier == productosSegue {
-            
-            segueToChoose = productosSegue
-        } else {
-            
-            segueToChoose = clientesSegue
-        }
-        
+//        if segue.identifier == productosSegue {
+//            
+//            segueToChoose = productosSegue
+//        } else {
+//            
+//            segueToChoose = clientesSegue
+//        }
+//        
     }
     
     

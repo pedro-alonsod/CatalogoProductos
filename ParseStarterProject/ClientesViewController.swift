@@ -16,8 +16,13 @@ class ClientesViewController: UIViewController, MFMailComposeViewControllerDeleg
     
     var arrayProductos: [PFObject] = []
     
+    var sortOrder = true
+    
+    let mensajesSegue = "MensajesSegue"
+
     
     
+    @IBOutlet weak var productosTable: UITableView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -152,15 +157,19 @@ class ClientesViewController: UIViewController, MFMailComposeViewControllerDeleg
     }
     
 
-    /*
+    
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         // Get the new view controller using segue.destinationViewController.
         // Pass the selected object to the new view controller.
+        let mensajesVC = segue.destinationViewController as! MensajesViewController
+        
+        mensajesVC.user = PFUser.currentUser()
+        
     }
-    */
+
     
     @IBAction func salirTapped(sender: UIButton) {
         
@@ -199,6 +208,121 @@ class ClientesViewController: UIViewController, MFMailComposeViewControllerDeleg
     func mailComposeController(controller: MFMailComposeViewController!, didFinishWithResult result: MFMailComposeResult, error: NSError!) {
         controller.dismissViewControllerAnimated(true, completion: nil)
         
+    }
+    
+    @IBAction func nombreTapped(sender: UIButton) {
+        
+        
+        
+        if sortOrder {
+            
+        
+            arrayProductos.sortInPlace {
+                (object1: PFObject, object2: PFObject) -> Bool in
+                
+                let o1 = object1["nombre"] as! String
+                let o2 = object2["nombre"] as! String
+                
+                return o1 > o2
+                
+            }
+            
+            displayError("Alerta", message: "Re-acomodando productos.")
+
+        
+            productosTable.reloadData()
+            
+            sortOrder = false
+            
+            
+        } else {
+            
+            
+            arrayProductos.sortInPlace {
+                
+                (object1: PFObject, object2: PFObject) -> Bool in
+                
+                let o1 = object1["nombre"] as! String
+                let o2 = object2["nombre"] as! String
+                
+                return o1 < o2
+                
+            }
+            
+            displayError("Alerta", message: "Re-acomodando productos.")
+
+            
+            productosTable.reloadData()
+            
+            sortOrder = true
+            
+        }
+        
+        
+    }
+    
+    @IBAction func precioTapped(sender: UIButton) {
+     
+        if sortOrder {
+            
+            
+            arrayProductos.sortInPlace {
+                (object1: PFObject, object2: PFObject) -> Bool in
+                
+                return (Int(object1["precio"] as! String)!) > Int(object2["precio"] as! String)!
+                
+            }
+            
+            displayError("Alerta", message: "Re-acomodando productos.")
+
+            
+            productosTable.reloadData()
+            
+            sortOrder = false
+            
+            
+        } else {
+            
+            
+            arrayProductos.sortInPlace {
+                
+                (object1: PFObject, object2: PFObject) -> Bool in
+                
+
+                
+                return (Int(object1["precio"] as! String)!) < (Int(object2["precio"] as! String)!)
+            
+            }
+            
+            displayError("Alerta", message: "Re-acomodando productos.")
+            
+            productosTable.reloadData()
+            
+            sortOrder = true
+            
+        }
+
+        
+    }
+    
+      func displayError(title: String, message: String) {
+        
+        if #available(iOS 8.0, *) {
+            let alert: UIAlertController = UIAlertController(title: title, message: message, preferredStyle: UIAlertControllerStyle.Alert)
+            
+            alert.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.Default, handler: nil))
+            self.presentViewController(alert, animated: true, completion: nil)
+            
+            
+            
+        } else {
+            // Fallback on earlier versions
+        }
+        
+    }
+    @IBAction func mensajesTapped(sender: UIButton) {
+        
+        self.performSegueWithIdentifier(mensajesSegue, sender: self)
     }
 
 }

@@ -17,9 +17,11 @@
 		81BA81791A49E0DB00E65899 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 81BA81781A49E0DB00E65899 /* AudioToolbox.framework */; };
 		81BA817B1A49E0E500E65899 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 81BA817A1A49E0E500E65899 /* SystemConfiguration.framework */; };
 		81BA817F1A49E0F000E65899 /* libstdc++.6.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 81BA817E1A49E0F000E65899 /* libstdc++.6.dylib */; };
+		B7024F221CAC81D6008E1393 /* VerMensajesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7024F211CAC81D6008E1393 /* VerMensajesViewController.swift */; };
 		B774979B1C97309500CCBBCD /* ProductosViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B774979A1C97309500CCBBCD /* ProductosViewController.swift */; };
 		B774979D1C9738CA00CCBBCD /* DetallesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B774979C1C9738CA00CCBBCD /* DetallesViewController.swift */; };
 		B774979F1C9745AD00CCBBCD /* ProductosTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B774979E1C9745AD00CCBBCD /* ProductosTableViewCell.swift */; };
+		B7895E451CAC27BE00E3B3E2 /* MensajesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7895E441CAC27BE00E3B3E2 /* MensajesViewController.swift */; };
 		B7D188E81C9C0E3400522C07 /* ClientesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7D188E71C9C0E3400522C07 /* ClientesViewController.swift */; };
 		B7D188EA1C9C186D00522C07 /* ClientesTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7D188E91C9C186D00522C07 /* ClientesTableViewCell.swift */; };
 /* End PBXBuildFile section */
@@ -39,9 +41,11 @@
 		81BA817A1A49E0E500E65899 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		81BA817E1A49E0F000E65899 /* libstdc++.6.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libstdc++.6.dylib"; path = "usr/lib/libstdc++.6.dylib"; sourceTree = SDKROOT; };
 		81BA81801A49E10C00E65899 /* ParseUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = ParseUI.framework; sourceTree = "<group>"; };
+		B7024F211CAC81D6008E1393 /* VerMensajesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VerMensajesViewController.swift; sourceTree = "<group>"; };
 		B774979A1C97309500CCBBCD /* ProductosViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProductosViewController.swift; sourceTree = "<group>"; };
 		B774979C1C9738CA00CCBBCD /* DetallesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetallesViewController.swift; sourceTree = "<group>"; };
 		B774979E1C9745AD00CCBBCD /* ProductosTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProductosTableViewCell.swift; sourceTree = "<group>"; };
+		B7895E441CAC27BE00E3B3E2 /* MensajesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MensajesViewController.swift; sourceTree = "<group>"; };
 		B7D188E71C9C0E3400522C07 /* ClientesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ClientesViewController.swift; sourceTree = "<group>"; };
 		B7D188E91C9C186D00522C07 /* ClientesTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ClientesTableViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -96,6 +100,8 @@
 				81BA814A1A49DA1800E65899 /* AppDelegate.swift */,
 				81BA814C1A49DA1800E65899 /* ViewController.swift */,
 				814C3AC61B69877600E307BB /* Main.storyboard */,
+				B7024F211CAC81D6008E1393 /* VerMensajesViewController.swift */,
+				B7895E441CAC27BE00E3B3E2 /* MensajesViewController.swift */,
 				B7D188E91C9C186D00522C07 /* ClientesTableViewCell.swift */,
 				B7D188E71C9C0E3400522C07 /* ClientesViewController.swift */,
 				B774979E1C9745AD00CCBBCD /* ProductosTableViewCell.swift */,
@@ -202,9 +208,11 @@
 				B7D188EA1C9C186D00522C07 /* ClientesTableViewCell.swift in Sources */,
 				81BA814D1A49DA1800E65899 /* ViewController.swift in Sources */,
 				B774979F1C9745AD00CCBBCD /* ProductosTableViewCell.swift in Sources */,
+				B7895E451CAC27BE00E3B3E2 /* MensajesViewController.swift in Sources */,
 				B7D188E81C9C0E3400522C07 /* ClientesViewController.swift in Sources */,
 				B774979B1C97309500CCBBCD /* ProductosViewController.swift in Sources */,
 				81BA814B1A49DA1800E65899 /* AppDelegate.swift in Sources */,
+				B7024F221CAC81D6008E1393 /* VerMensajesViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
